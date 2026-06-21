@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
-import SearchBar from "./components/SearchBar/SearchBar";
+import SearchBar from "../SearchBar/SearchBar";
 import "./App.css";
 import { Toaster } from "react-hot-toast";
 import toast from "react-hot-toast";
-import fetchMovies from "./services/movieService";
-import type { Movie } from "./types/movie";
-import MovieGrid from "./components/MovieGrid/MovieGrid";
-import Loader from "./components/Loader/Loader";
-import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
-import MovieModal from "./components/MovieModal/MovieModal";
+import fetchMovies from "../../services/movieService";
+import type { Movie } from "../../types/movie";
+import MovieGrid from "../MovieGrid/MovieGrid";
+import Loader from "../Loader/Loader";
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
+import MovieModal from "../MovieModal/MovieModal";
 
 const App = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -34,7 +34,6 @@ const App = () => {
       try {
         const data = await fetchMovies(query);
 
-        // Перевірка: якщо масив фільмів порожній
         if (data.length === 0) {
           toast.error("No movies found for your request.");
           return;
